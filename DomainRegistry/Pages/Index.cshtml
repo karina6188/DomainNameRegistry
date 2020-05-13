@@ -13,6 +13,10 @@
                 <div class="form-group col-md-6">
                     <label asp-for="Input.DomainName">Domain Name</label>
                     <input asp-for="Input.DomainName" type="text" class="form-control" id="inputDomain-Name" placeholder="Domain Name">
+                    <asp:RangeValidator ID="rvclass" runat="server" ControlToValidate="txtclass"
+                                        ErrorMessage="Domain name needs to be at least 10 characters long" MaximumValue="30"
+                                        MinimumValue="10" Type="text">
+                    </asp:RangeValidator>
                 </div>
                 <div class="form-group col-md-6">
                     <label asp-for="Input.Period">Period of Registration (years)</label>
