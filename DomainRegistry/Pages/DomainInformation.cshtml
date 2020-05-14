@@ -9,18 +9,15 @@
     <div class="row">
         <div class="col-sm">
             <div class="row">
-                <h3>Domain Name:&nbsp;&nbsp;</h3>
-                <p>@Model.Domain.DomainName</p>
+                <h4>Domain Name:&nbsp;&nbsp;@Model.Domain.DomainName</h4>
             </div>
             <div class="row">
-                <h3>Verification Provider:&nbsp;&nbsp;</h3>
-                <p>Provider- @Model.Domain.Provider</p>
+                <h4>Verification Provider:&nbsp;&nbsp;Provider-@Model.Domain.Provider</h4>
             </div>
             <div class="row">
-                <h3>Period of Registration:&nbsp;&nbsp;</h3>
-                <p>@Model.Domain.Period year(s)</p>
+                <h4>Period of Registration:&nbsp;&nbsp;@Model.Domain.Period year(s)</h4>
             </div>
-            <a href="/Renew/@{Model.Domain.ID}">Renew</a>
+            <a href="/Renew/@Model.Domain.ID">Renew</a>
         </div>
     </div>
 </div>
