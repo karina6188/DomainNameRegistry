@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using DomainRegistry.Models;
 using DomainRegistry.Data;
 using DomainRegistry.Models.Interface;
+using System.Text.RegularExpressions;
 
 namespace DomainRegistry.Pages
 {
@@ -57,11 +58,60 @@ namespace DomainRegistry.Pages
                 ContactID = Input.ContactID
             };
 
-            await _domain.CreateDomainAsync(domain);
-            var result = _domain.GetDomainByDomainIdAsync(domain.ID);
-            if (result != null)
+            string pattern = "^[a-zA-Z][a-zA-Z0-9]*$";
+            switch (domain.Provider)
             {
-                return Redirect($"/DomainInformation/{domain.ID}");
+                case "A":
+                    pattern = "^[a-zA-Z][a-zA-Z0-9]*$";
+                    break;
+                case "B":
+                    pattern = "^[0-9]*$";
+                    break;
+                case "C":
+                    pattern = @"^\d{1}\[a-z]{3}\d{2}";
+                    break;
+                case "D":
+                    break;
+                case "E":
+                    break;
+                case "F":
+                    break;
+                case "G":
+                    break;
+                case "H":
+                    break;
+                case "I":
+                    break;
+                case "J":
+                    break;
+                case "K":
+                    break;
+                case "L":
+                    break;
+                case "M":
+                    break;
+                case "N":
+                    break;
+                case "O":
+                    break;
+                default:
+                    Redirect("/");
+                    break;
+            }
+            Regex format = new Regex(pattern);
+
+            if (format.IsMatch(domain.ContactID))
+            {
+                await _domain.CreateDomainAsync(domain);
+                var result = _domain.GetDomainByDomainIdAsync(domain.ID);
+                if (result != null)
+                {
+                    return Redirect($"/DomainInformation/{domain.ID}");
+                }
+                else
+                {
+                    return Redirect("/");
+                }
             }
             else
             {
