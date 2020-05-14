@@ -108,15 +108,9 @@ namespace DomainRegistry.Pages
                 {
                     return Redirect($"/DomainInformation/{domain.ID}");
                 }
-                else
-                {
-                    return Redirect("/");
-                }
+                else return Redirect("/");
             }
-            else
-            {
-                return Redirect("/");
-            }
+            else return Redirect("/");
         }
 
         /// <summary>
