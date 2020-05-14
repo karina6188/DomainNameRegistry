@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DomainRegistry.Data;
+using DomainRegistry.Models.Interface;
+using DomainRegistry.Models.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -34,12 +36,14 @@ namespace DomainRegistry
 
             services.AddControllersWithViews();
 
+            services.AddScoped<IDomain, DomainManager>();
+
             string userConnString = Environment.IsDevelopment()
                 ? Configuration["ConnectionStrings:UserConnection"]
                 : Configuration["ConnectionStrings:UserConnection"];
 
             services.AddDbContext<DomainDbContext>(options =>
-                options.UseSqlServer(userConnString));
+            options.UseSqlServer(userConnString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

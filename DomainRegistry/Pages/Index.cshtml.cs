@@ -8,22 +8,23 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.Extensions.Configuration;
 using DomainRegistry.Models;
 using DomainRegistry.Data;
+using DomainRegistry.Models.Interface;
 
 namespace DomainRegistry.Pages
 {
     public class IndexModel : PageModel
     {
-        public IConfiguration Configuration { get; set; }
+        private readonly IDomain _domain;
+
+        //public IConfiguration Configuration { get; }
+
+        public IndexModel(IDomain domaincontext)
+        {
+            _domain = domaincontext;
+        }
 
         [BindProperty]
         public RegisterInput Input { get; set; }
-
-        private DomainDbContext _context;
-
-        public IndexModel(DomainDbContext context)
-        {
-            _context = context;
-        }
 
         public void OnGet()
         {
@@ -44,14 +45,21 @@ namespace DomainRegistry.Pages
                 ContactID = Input.ContactID
             };
 
-            var result = await _context.
-            
+            await _domain.CreateDomainAsync(domain);
+            var result = _domain.GetDomainByDomainIdAsync(domain.ID);
+            if (result != null)
+            {
+                return Redirect($"/DomainInformation/{domain.ID}");
+            }
+            else
+            {
+                return Redirect("/");
+            }
         }
 
         public class RegisterInput
         {
             [StringLength(30, MinimumLength = 10)]
-            [RegularExpression(@"^[a-zA-Z0-9""'\s-]*$", ErrorMessage = "The field Domain Name: can only contain characters and numbers")]
             [Required]
             [Display(Name = "Domain Name:")]
             public string DomainName { get; set; }
