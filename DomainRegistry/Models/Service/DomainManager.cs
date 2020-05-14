@@ -25,9 +25,9 @@ namespace DomainRegistry.Models.Service
 
         public async Task<Domain> GetDomainByDomainIdAsync(int domainID) => await _context.Domain.FirstOrDefaultAsync(x => x.ID == domainID);
 
-        public async Task DeleteDomain(int domainID)
+        public async Task DeleteDomain(int id)
         {
-            Domain domain = await GetDomainByDomainIdAsync(domainID);
+            Domain domain = await GetDomainByDomainIdAsync(id);
             _context.Domain.RemoveRange(domain);
             await _context.SaveChangesAsync();
         }

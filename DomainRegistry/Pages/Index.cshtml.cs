@@ -16,8 +16,6 @@ namespace DomainRegistry.Pages
     {
         private readonly IDomain _domain;
 
-        //public IConfiguration Configuration { get; }
-
         public IndexModel(IDomain domaincontext)
         {
             _domain = domaincontext;

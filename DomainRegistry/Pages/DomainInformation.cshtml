@@ -18,6 +18,12 @@
                 <h4>Period of Registration:&nbsp;&nbsp;@Model.Domain.Period year(s)</h4>
             </div>
             <a href="/Renew/@Model.Domain.ID">Renew</a>
+            <div class="row">
+                <a href="/">Register another Domain</a>
+            </div>
+            <form method="post">
+                <button type="submit" class="btn btn-outline-danger" asp-route-id="@Model.Domain.ID">Delete Domain</button>
+            </form>
         </div>
     </div>
 </div>

@@ -24,5 +24,11 @@ namespace DomainRegistry.Pages
         {
             Domain = await _domain.GetDomainByDomainIdAsync(id);
         }
+
+        public async Task<IActionResult> OnPostAsync(int id)
+        {
+            await _domain.DeleteDomain(id);
+            return Redirect("/");
+        }
     }
 }
