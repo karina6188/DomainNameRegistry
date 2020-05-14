@@ -14,8 +14,15 @@ namespace DomainRegistry.Pages
 {
     public class IndexModel : PageModel
     {
+        /// <summary>
+        /// Dependency injection to establish a private connection to a database table by injecting an interface
+        /// </summary>
         private readonly IDomain _domain;
 
+        /// <summary>
+        /// A contructor to set propety to the corresponding interface instance
+        /// </summary>
+        /// <param name="domaincontext"></param>
         public IndexModel(IDomain domaincontext)
         {
             _domain = domaincontext;
@@ -29,6 +36,13 @@ namespace DomainRegistry.Pages
 
         }
 
+        /// <summary>
+        /// Get the data from the form and use the information to createe a Domain object
+        /// Create a new data row using the Domain object and save it into the database
+        /// If the data is saved successfully, redirect the page to Domain Information
+        /// Otherwise stay at the same page
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnPost()
         {
             if (!ModelState.IsValid)
@@ -55,6 +69,9 @@ namespace DomainRegistry.Pages
             }
         }
 
+        /// <summary>
+        /// A class to define the RegisterInput
+        /// </summary>
         public class RegisterInput
         {
             [StringLength(30, MinimumLength = 10)]
