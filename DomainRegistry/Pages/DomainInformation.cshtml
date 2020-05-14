@@ -1,23 +1,23 @@
 ﻿@page "{id?}"
-@using DomainRegistry.Models
 @model DomainRegistry.Pages.DomainInformationModel
 @{
     ViewData["Title"] = "DomainInformation";
 }
 
 <div class="container">
+    <h1>Domain Information</h1>
     <div class="row">
         <div class="col-sm">
             <div class="row">
-                <h4>Domain Name:&nbsp;&nbsp;</h4>
+                <h3>Domain Name:&nbsp;&nbsp;</h3>
                 <p> @Model.Domain.DomainName</p>
             </div>
             <div class="row">
-                <h4>Verification Provider:&nbsp;&nbsp;</h4>
+                <h3>Verification Provider:&nbsp;&nbsp;</h3>
                 <p> Provider- @Model.Domain.Provider</p>
             </div>
             <div class="row">
-                <h4>Period of Registration:&nbsp;&nbsp;</h4>
+                <h3>Period of Registration:&nbsp;&nbsp;</h3>
                 <p> @Model.Domain.Period year(s)</p>
             </div>
         </div>

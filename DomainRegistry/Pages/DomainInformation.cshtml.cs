@@ -20,9 +20,9 @@ namespace DomainRegistry.Pages
 
         public Domain Domain { get; set; }
 
-        public async Task OnGetAsync(int domainID)
+        public async Task OnGetAsync(int id)
         {
-            Domain = await _domain.GetDomainByDomainIdAsync(domainID);
+            Domain = await _domain.GetDomainByDomainIdAsync(id);
         }
     }
 }
